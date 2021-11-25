@@ -25,4 +25,22 @@ class Exercises with ChangeNotifier {
     return _items;
   }
 
+  Future<int?> getCountOfExercises(String table) async {
+
+    return DBHelper.getNumberOfItems('exercises');
+  }
+
+
+  Future<List<Exercise>> filterOutExercises(String table, String whereArg) async {
+
+    final dataList = await DBHelper.filterOutData(table, whereArg);
+
+    print(dataList);
+
+    _items = dataList.map((item) => Exercise(id: item['id'], name: item['name'], desc: item['desc'])).toList();
+    notifyListeners();
+
+    return _items;
+  }
+
 }

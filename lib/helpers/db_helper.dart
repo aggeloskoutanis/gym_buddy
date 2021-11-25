@@ -1,4 +1,3 @@
-import 'package:gym_buddy/models/dropdown_item.dart';
 import 'package:sqflite/sqflite.dart' as sql;
 import 'package:path/path.dart' as path;
 
@@ -61,11 +60,18 @@ class DBHelper {
     return db.query(table);
   }
 
+  static Future<List<Map<String, dynamic>>> filterOutData(String table, String whereArg) async {
+
+    final db = await DBHelper.database();
+
+    return db.query(table,  columns: ['id', 'name', 'desc', 'FK_muscle_group'], where: 'name LIKE ?', whereArgs: ['%$whereArg%']);
+  }
+
   static Future<List<Object?>> fetchDropDownItems(String table, whereArg) async {
 
     final db = await DBHelper.database();
 
-    final results = db.query(table, columns: ['id' 'name' 'desc' 'FK_muscle_group'], where: 'FK_muscle_group = ?', whereArgs: [whereArg]);
+    final results = db.query(table, columns: ['id', 'name', 'desc', 'FK_muscle_group'], where: 'FK_muscle_group = ?', whereArgs: [whereArg]);
 
     return results;
   }
