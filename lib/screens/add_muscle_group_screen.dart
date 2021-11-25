@@ -42,44 +42,17 @@ class _AddMuscleGroupScreenState extends State<AddMuscleGroupScreen> {
                     const SizedBox(
                       height: 10,
                     ),
-                    FutureBuilder<List>(
-                      key: _abcKey,
-                      future: Provider.of<Exercises>(context, listen: false)
-                          .fetchAndSetExercises(),
-                      builder: (context, snapshot) {
-                        if (snapshot.hasData) {
-                          return GestureDetector(
-                            child: DropdownSearch<String>(
-                              mode: Mode.MENU,
-                              showSelectedItems: true,
-                              dropDownButton: Icon(Icons.expand_more),
-                              items: snapshot.data!.map((value) {
-                                return value.name as String;
-                              }).toList(),
-                              label: "Select exercise",
-                              hint: "country in menu mode",
-                              onChanged: print,
-                            ),
-                          );
-                        } else {
-                          return DropdownSearch<String>(
-                              mode: Mode.MENU,
-                              showSelectedItems: true,
-                              items: null,
-                              label: "Select exercise",
-                              hint: "country in menu mode",
-                              onChanged: print);
-                        }
-                      },
+                    const SizedBox(
+                      height: 10,
                     ),
+                    MultipleSearch(),
                     const SizedBox(
                       height: 10,
                     ),
                     TextButton(
                       onPressed: () {},
                       child: Text('Add new group'),
-                    ),
-                    MultipleSearch()
+                    )
                   ],
                 ),
               ),

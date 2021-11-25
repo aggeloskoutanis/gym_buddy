@@ -43,4 +43,17 @@ class Exercises with ChangeNotifier {
     return _items;
   }
 
+  Future<void> insertNewExercise(onChangeValue) async {
+
+
+    Map<String, Object> value = {
+      'id': DateTime.now().toString(),
+      'name': onChangeValue,
+      'desc': onChangeValue,
+    };
+
+    final dataList = await DBHelper.insert('exercises', value);
+
+  }
+
 }
