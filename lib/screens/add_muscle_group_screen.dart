@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:dropdown_search/dropdown_search.dart';
+
 import 'package:gym_buddy/widgets/multiple_search.dart';
-import '../providers/exercises.dart';
-import 'package:provider/provider.dart';
 
 class AddMuscleGroupScreen extends StatefulWidget {
   static const routeName = '/add-muscle-group';
@@ -15,8 +13,6 @@ class AddMuscleGroupScreen extends StatefulWidget {
 
 class _AddMuscleGroupScreenState extends State<AddMuscleGroupScreen> {
   final _groupNameController = TextEditingController();
-
-  final GlobalKey<FormState> _abcKey = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
@@ -49,10 +45,6 @@ class _AddMuscleGroupScreenState extends State<AddMuscleGroupScreen> {
                     const SizedBox(
                       height: 10,
                     ),
-                    TextButton(
-                      onPressed: () {},
-                      child: Text('Add new group'),
-                    )
                   ],
                 ),
               ),
