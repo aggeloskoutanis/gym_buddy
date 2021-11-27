@@ -25,7 +25,14 @@ class MyApp extends StatelessWidget {
       child: MaterialApp(
         title: 'Flutter Demo',
         theme: ThemeData(
-          primarySwatch: Colors.blue,
+          primarySwatch: Colors.lightGreen,
+          textTheme: TextTheme(
+            bodyText1: TextStyle(),
+            bodyText2: TextStyle()
+          ).apply(
+            bodyColor: Colors.black54,
+            displayColor: Colors.white
+          )
         ),
         home: const MuscleGroupScreen(),
         routes: {

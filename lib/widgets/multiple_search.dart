@@ -16,7 +16,6 @@ class _MultipleSearchState extends State<MultipleSearch> {
 
   List<Exercise> _selectedExercises = [];
 
-
   @override
   void dispose() {
     // Clean up the controller when the widget is removed from the
@@ -32,62 +31,45 @@ class _MultipleSearchState extends State<MultipleSearch> {
     // Start listening to changes.
   }
 
-
   @override
   Widget build(BuildContext context) {
     return Column(
       children: [
         StyleHelpers.frameContainer(
             ListView.builder(
-                itemCount: _selectedExercises.length,
-                shrinkWrap: true,
-                itemBuilder: (ctx, i) => ListTile(
-                      title: Text(_selectedExercises[i].name),
-                      subtitle: Text(_selectedExercises[i].desc),
-                    )),
-            300),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            TextButton.icon(
-              style: TextButton.styleFrom(
-                backgroundColor: Colors.greenAccent,
-                primary: Colors.grey,
+              itemCount: _selectedExercises.length,
+              shrinkWrap: true,
+              itemBuilder: (ctx, i) => Card(
+                elevation: 2,
+                shadowColor: Theme.of(context).primaryColor,
+                child: ListTile(
+                  title: Text(_selectedExercises[i].name),
+                  subtitle: Text(_selectedExercises[i].desc),
+                ),
               ),
-              icon: const Icon(Icons.add),
-              onPressed: () {
-                showDialog(
-                    context: context,
-                    builder: (context) {
-                      return ExerciseAlertDialog(
-                          getCheckedOutExercises: (List<Exercise> checkedExercises){
-
-                            setState((){
-                                _selectedExercises =   checkedExercises;
-                            });
-
-                      });
-
-                    });
-              },
-              label: const Text('Add exercises'),
             ),
-            TextButton.icon(
-              style: TextButton.styleFrom(
-                backgroundColor: Colors.greenAccent,
-                primary: Colors.grey,
-              ),
-              icon: const Icon(Icons.save),
-              onPressed: () {},
-              label: const Text('Add new group'),
-            )
-          ],
-        )
+            MediaQuery.of(context).size.height * 0.45, context),
+            ElevatedButton(
+            
+            style: ButtonStyle(
+              shadowColor: MaterialStateProperty.all(Theme.of(context).primaryColor),
+              elevation: MaterialStateProperty.all(5)
+
+            ),
+            onPressed: () {
+              showDialog(
+                  context: context,
+                  builder: (context) {
+                    return ExerciseAlertDialog(getCheckedOutExercises:
+                        (List<Exercise> checkedExercises) {
+                      setState(() {
+                        _selectedExercises = checkedExercises;
+                      });
+                    });
+                  });
+            }, child: const Text('Add exercises', style: TextStyle(color: Colors.white),),
+          ),
       ],
     );
   }
-
-
-
-
 }

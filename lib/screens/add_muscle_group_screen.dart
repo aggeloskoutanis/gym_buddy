@@ -18,39 +18,65 @@ class _AddMuscleGroupScreenState extends State<AddMuscleGroupScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(),
-      body: Column(
-        children: [
-          const SizedBox(
-            height: 20,
-          ),
-          Expanded(
-            child: SingleChildScrollView(
-              child: Padding(
-                padding: const EdgeInsets.all(12),
-                child: Column(
-                  children: [
-                    TextField(
-                      decoration: const InputDecoration(
-                          labelText: 'Group name',
-                          border: OutlineInputBorder()),
-                      controller: _groupNameController,
-                    ),
-                    const SizedBox(
-                      height: 10,
-                    ),
-                    const SizedBox(
-                      height: 10,
-                    ),
-                    MultipleSearch(),
-                    const SizedBox(
-                      height: 10,
-                    ),
-                  ],
+      body: GestureDetector(
+
+        onTap: () {
+
+          FocusManager.instance.primaryFocus?.unfocus();
+
+        },
+        child: Column(
+          children: [
+            const SizedBox(
+              height: 20,
+            ),
+            Expanded(
+              child: SingleChildScrollView(
+                child: Padding(
+                  padding: const EdgeInsets.all(12),
+                  child: Column(
+                    children: [
+                      TextField(
+
+                        decoration: InputDecoration(
+                            enabledBorder: OutlineInputBorder(
+                              borderSide: BorderSide(color: Theme.of(context).primaryColor),
+                            ),
+                            labelText: 'Group name',
+
+                            border: OutlineInputBorder()),
+                        controller: _groupNameController,
+                      ),
+                      const SizedBox(
+                        height: 10,
+                      ),
+                      const SizedBox(
+                        height: 10,
+                      ),
+                      MultipleSearch(),
+
+
+                    ],
+                  ),
                 ),
               ),
             ),
-          )
-        ],
+            Container(
+              margin: const EdgeInsets.symmetric(horizontal: 25, vertical: 30),
+              child: Align(
+                alignment: Alignment.bottomRight,
+                child: FloatingActionButton(
+                  child: const Icon(Icons.save, color: Colors.white,),
+                  onPressed: () {
+
+
+
+                  },
+                ),
+              ),
+            )
+          ],
+        ),
       ),
     );
   }
