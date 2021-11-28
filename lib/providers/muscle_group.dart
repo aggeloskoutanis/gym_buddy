@@ -1,6 +1,8 @@
-import './exercise.dart';
+import 'package:flutter/cupertino.dart';
 
-class MuscleGroup {
+import 'exercise.dart';
+
+class MuscleGroup with ChangeNotifier{
 
   String id;
   String name;

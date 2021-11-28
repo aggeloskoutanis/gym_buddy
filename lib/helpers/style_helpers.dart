@@ -9,7 +9,7 @@ class StyleHelpers {
           border: Border.all(color: Theme.of(context).primaryColor),
           borderRadius: BorderRadius.circular(5),
         ),
-        margin: const EdgeInsets.all(0),
+        margin: const EdgeInsets.symmetric(vertical: 10),
         padding: const EdgeInsets.all(10),
         height: height,
         width: 400,

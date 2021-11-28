@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../models/exercise.dart';
+import 'exercise.dart';
 import '../helpers/db_helper.dart';
 
 class Exercises with ChangeNotifier {
@@ -33,7 +33,7 @@ class Exercises with ChangeNotifier {
 
   Future<List<Exercise>> filterOutExercises(String table, String whereArg) async {
 
-    final dataList = await DBHelper.filterOutData(table, whereArg);
+    final dataList = await DBHelper.filterOutData(table, ['id', 'name', 'desc', 'FK_muscle_group'], 'name', whereArg);
 
     print(dataList);
 
@@ -52,8 +52,9 @@ class Exercises with ChangeNotifier {
       'desc': onChangeValue,
     };
 
-    final dataList = await DBHelper.insert('exercises', value);
+    await DBHelper.insert('exercises', value);
 
   }
+
 
 }

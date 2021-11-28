@@ -1,11 +1,16 @@
 import 'package:flutter/material.dart';
-import 'package:gym_buddy/models/exercise.dart';
-import 'package:gym_buddy/widgets/exercise_alert_dialog.dart';
-import '../models/exercise.dart';
+import 'package:gym_buddy/providers/exercise.dart';
+import 'package:gym_buddy/screens/exercise_alert_dialog.dart';
+import '../providers/exercise.dart';
 import '../helpers/style_helpers.dart';
 
 class MultipleSearch extends StatefulWidget {
-  const MultipleSearch({Key? key}) : super(key: key);
+
+  final Function(List<Exercise>) getExercises;
+
+  const MultipleSearch({required this.getExercises, Key? key}) : super(key: key);
+
+
 
   @override
   _MultipleSearchState createState() => _MultipleSearchState();
@@ -36,6 +41,7 @@ class _MultipleSearchState extends State<MultipleSearch> {
     return Column(
       children: [
         StyleHelpers.frameContainer(
+    _selectedExercises.isEmpty ? const Center(child: Text('Exercises list is empty = ('),):
             ListView.builder(
               itemCount: _selectedExercises.length,
               shrinkWrap: true,
@@ -64,6 +70,7 @@ class _MultipleSearchState extends State<MultipleSearch> {
                         (List<Exercise> checkedExercises) {
                       setState(() {
                         _selectedExercises = checkedExercises;
+                        widget.getExercises(checkedExercises);
                       });
                     });
                   });

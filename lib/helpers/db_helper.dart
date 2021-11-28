@@ -40,6 +40,16 @@ class DBHelper {
     db.insert(table, data, conflictAlgorithm: sql.ConflictAlgorithm.replace);
   }
 
+  static Future<bool> checkIfExists(String table, String key, columns) async {
+
+    final db = await DBHelper.database();
+
+    final result = await db.query(table, columns: columns, where: 'name LIKE ?', whereArgs: ['$key']);
+
+    return result.isNotEmpty ? true : false;
+  }
+
+
   static Future<int?> getNumberOfItems(String table)  async {
     int? count = 0;
     final db = await DBHelper.database();
@@ -60,11 +70,11 @@ class DBHelper {
     return db.query(table);
   }
 
-  static Future<List<Map<String, dynamic>>> filterOutData(String table, String whereArg) async {
+  static Future<List<Map<String, dynamic>>> filterOutData(String table, columns , String keyColumn, String whereArg) async {
 
     final db = await DBHelper.database();
 
-    return db.query(table,  columns: ['id', 'name', 'desc', 'FK_muscle_group'], where: 'name LIKE ?', whereArgs: ['%$whereArg%']);
+    return db.query(table,  columns: columns, where: keyColumn + ' LIKE ?', whereArgs: ['%$whereArg%']);
   }
 
   static Future<List<Object?>> fetchDropDownItems(String table, whereArg) async {
@@ -74,6 +84,32 @@ class DBHelper {
     final results = db.query(table, columns: ['id', 'name', 'desc', 'FK_muscle_group'], where: 'FK_muscle_group = ?', whereArgs: [whereArg]);
 
     return results;
+  }
+  
+  static Future<int> attachExercisesToGroup(List<String> exercisesToAttach, String? groupId) async {
+
+    final db = await DBHelper.database();
+    int rowsAffected = 0;
+
+    for (String exercise in exercisesToAttach) {
+
+      var value = {
+        'FK_muscle_group': groupId
+      };
+
+      db.update('exercises', value, where: 'id LIKE ?', whereArgs: [exercise]).then((value) =>
+
+      rowsAffected += value
+
+      );
+
+
+
+    }
+
+
+    return rowsAffected;
+    
   }
 
 }

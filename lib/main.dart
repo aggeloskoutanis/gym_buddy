@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:gym_buddy/screens/group_details_screen.dart';
 import '../providers/exercises.dart';
 import '../providers/muscle_groups.dart';
 import 'package:provider/provider.dart';
@@ -26,7 +27,7 @@ class MyApp extends StatelessWidget {
         title: 'Flutter Demo',
         theme: ThemeData(
           primarySwatch: Colors.lightGreen,
-          textTheme: TextTheme(
+          textTheme: const TextTheme(
             bodyText1: TextStyle(),
             bodyText2: TextStyle()
           ).apply(
@@ -36,7 +37,8 @@ class MyApp extends StatelessWidget {
         ),
         home: const MuscleGroupScreen(),
         routes: {
-          AddMuscleGroupScreen.routeName : (ctx) => const AddMuscleGroupScreen()
+          AddMuscleGroupScreen.routeName : (ctx) => const AddMuscleGroupScreen(),
+          GroupDetailScreen.routeName : (ctx) => const GroupDetailScreen()
 
 
         })
