@@ -8,6 +8,8 @@ import '../providers/muscle_groups.dart';
 class MuscleGroupScreen extends StatefulWidget {
   const MuscleGroupScreen({Key? key}) : super(key: key);
 
+  static const routeName = 'muscle-groups';
+
   @override
   State<MuscleGroupScreen> createState() => _MuscleGroupScreenState();
 }

@@ -23,7 +23,7 @@ class _GroupItemState extends State<GroupItem> {
         tag: widget.muscleGroup.id,
         child: Card(
           elevation: 2,
-          shadowColor: Theme.of(context).primaryColor,
+          shadowColor: Theme.of(context).colorScheme.secondary,
           child: Padding(
             padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 10),
             child: Center(
