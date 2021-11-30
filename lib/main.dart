@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:gym_buddy/screens/workout_selection_screen.dart';
+import '../providers/workouts.dart';
 import '../screens/group_details_screen.dart';
 import '../screens/welcome_screen.dart';
 import '../providers/exercises.dart';
@@ -19,9 +21,9 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiProvider(
         providers: [
-          ChangeNotifierProvider<MuscleGroups>(
-              create: (context) => MuscleGroups()),
-          ChangeNotifierProvider<Exercises>(create: (context) => Exercises())
+          ChangeNotifierProvider<MuscleGroups>(create: (context) => MuscleGroups()),
+          ChangeNotifierProvider<Exercises>(create: (context) => Exercises()),
+          ChangeNotifierProvider<Workouts>(create: (context) => Workouts())
         ],
         child: MaterialApp(
           title: 'Flutter Demo',
@@ -38,7 +40,8 @@ class MyApp extends StatelessWidget {
             AddMuscleGroupScreen.routeName: (ctx) =>
                 const AddMuscleGroupScreen(),
             GroupDetailScreen.routeName: (ctx) => const GroupDetailScreen(),
-            WelcomeScreen.routeName: (ctx) => const WelcomeScreen()
+            WelcomeScreen.routeName: (ctx) => const WelcomeScreen(),
+            WorkoutSelectionScreen.routeName: (ctx) => const WorkoutSelectionScreen()
           },
           onUnknownRoute: (settings) {
             return MaterialPageRoute(builder: (ctx) => const WelcomeScreen());
@@ -75,8 +78,16 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+        floatingActionButton: FloatingActionButton(
+          child: const Icon(Icons.bolt),
+          onPressed: () {
+              Navigator.of(context).pushNamed(WorkoutSelectionScreen.routeName);
+          },
+        ),
+        floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
         body: _widgetOptions.elementAt(_selectedIndex),
         bottomNavigationBar: BottomAppBar(
+          notchMargin: 5,
           shape: const CircularNotchedRectangle(),
           clipBehavior: Clip.antiAlias,
           child: BottomNavigationBar(
@@ -97,7 +108,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
               BottomNavigationBarItem(
                   icon: const Icon(Icons.fitness_center),
-                  label: 'My workouts',
+                  label: 'My groups',
                   backgroundColor: Theme.of(context).colorScheme.secondary),
             ],
           ),

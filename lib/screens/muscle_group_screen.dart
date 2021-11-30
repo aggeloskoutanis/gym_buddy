@@ -45,7 +45,7 @@ class _MuscleGroupScreenState extends State<MuscleGroupScreen> {
                         itemCount: muscleGroups.items.length,
                         itemBuilder: (BuildContext context, int index) {
 
-                          return GroupItem(muscleGroup: muscleGroups.items[index]);
+                          return GroupItem(muscleGroup: muscleGroups.items[index], index: index, getSelectedGroupId: (String _){},);
 
                         }, gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
                     maxCrossAxisExtent: 200,

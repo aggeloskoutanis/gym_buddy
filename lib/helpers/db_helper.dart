@@ -15,6 +15,8 @@ class DBHelper {
     db.execute('CREATE TABLE muscle_groups(group_id TEXT PRIMARY KEY, name TEXT)');
     db.execute('CREATE TABLE exercises(id TEXT PRIMARY KEY, name TEXT, desc TEXT, FK_muscle_group TEXT,'
         'FOREIGN KEY (FK_muscle_group) REFERENCES muscle_groups (group_id))');
+    db.execute('CREATE TABLE workouts(workout_id TEXT PRIMARY KEY, date TEXT, FK_muscle_group TEXT PRIMARY KEY,'
+        'FOREIGN KEY (FK_muscle_group) REFERENCES muscle_groups (group_id))');
 
     var newGroup = {
 

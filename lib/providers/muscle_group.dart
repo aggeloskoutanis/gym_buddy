@@ -10,6 +10,16 @@ class MuscleGroup with ChangeNotifier{
 
   MuscleGroup({required this.id, required this.name, this.exercises = const []});
 
+  Map<String, Object> toJSON(){
 
+    final data = {
+
+      'group_id' : id,
+      'name' : name
+    };
+
+    return data;
+
+  }
 
 }
