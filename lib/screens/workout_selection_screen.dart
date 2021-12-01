@@ -15,12 +15,13 @@ class WorkoutSelectionScreen extends StatelessWidget {
 
     return Scaffold(
       floatingActionButton: FloatingActionButton(
-        child: Icon(Icons.directions_run),
+        child: const Icon(Icons.directions_run),
         onPressed: (){
 
           /* Registers a workout */
 
           print(muscleGroupsId);
+
 
         },
       ),
@@ -42,9 +43,14 @@ class WorkoutSelectionScreen extends StatelessWidget {
             itemCount: muscleGroups.items.length,
             itemBuilder: (BuildContext context, int index) {
 
-              return GroupItem(muscleGroup: muscleGroups.items[index], index: index, getSelectedGroupId: (String muscleGroupId) {
+              return GroupItem(isWorkoutSelection: true, muscleGroup: muscleGroups.items[index], index: index, getSelectedGroupId: (String muscleGroupId) {
 
-                muscleGroupsId.add(muscleGroupId);
+                if (!muscleGroupsId.contains(muscleGroupId)) {
+                  muscleGroupsId.add(muscleGroupId);
+                }
+                else{
+                  muscleGroupsId.remove(muscleGroupId);
+                }
                 print('GroupId: ' + muscleGroupId);
 
               });

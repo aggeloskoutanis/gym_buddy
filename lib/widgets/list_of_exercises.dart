@@ -22,8 +22,6 @@ class ListOfExercises extends StatefulWidget {
 class _ListOfExercisesState extends State<ListOfExercises> {
 
   ScrollController? _scrollController;
-  List<Exercise> listOfExercises = [];
-  String? changedValue;
   List<bool> isSelected = [];
   List<Exercise> exercisesToReturn = [];
 
@@ -33,27 +31,26 @@ class _ListOfExercisesState extends State<ListOfExercises> {
     super.initState();
 
     _scrollController = ScrollController();
-    changedValue = widget.onChangeValue;
 
 
-    listOfExercises = widget.exercises;
-    listOfExercises.removeWhere((element) => !element.name.contains(changedValue!));
-    isSelected = List.filled(listOfExercises.length, false);
 
   }
 
   @override
   Widget build(BuildContext context) {
 
+    if (widget.onChangeValue.isNotEmpty) {
+      widget.exercises.removeWhere((element) => !element.name.contains(widget.onChangeValue));
+    }
+    isSelected = List.filled(widget.exercises.length, false);
 
-
-    return listOfExercises.isEmpty ?
+    return widget.exercises.isEmpty ?
       StyleHelpers.frameContainer(
           GestureDetector(
             onTap: () {
               setState(() {
                 Provider.of<Exercises>(context, listen: false)
-                    .insertNewExercise(changedValue);
+                    .insertNewExercise(widget.onChangeValue);
               });
 
               const SnackBar snackBar =
@@ -86,14 +83,14 @@ class _ListOfExercisesState extends State<ListOfExercises> {
                     controller: _scrollController,
                     scrollDirection: Axis.vertical,
                     shrinkWrap: true,
-                    itemCount: listOfExercises.length,
+                    itemCount: widget.exercises.length,
                     itemBuilder: (ctx, i) => Card(
                       elevation: 2,
                       shadowColor: Theme.of(context).primaryColor,
                       child: CheckboxListTile(
                         autofocus: false,
-                        title: Text(listOfExercises[i].name),
-                        subtitle: Text(listOfExercises[i].desc),
+                        title: Text(widget.exercises[i].name),
+                        subtitle: Text(widget.exercises[i].desc),
                         onChanged: (bool? value) {
                           setState(() {
                             isSelected[i] = !isSelected[i];
@@ -112,7 +109,7 @@ class _ListOfExercisesState extends State<ListOfExercises> {
                   setState(() {
                     for (int i = 0; i < isSelected.length; i++) {
                       if (isSelected[i]) {
-                        exercisesToReturn.add(listOfExercises[i]);
+                        exercisesToReturn.add(widget.exercises[i]);
                       }
                     }
 

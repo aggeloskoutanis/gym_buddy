@@ -23,14 +23,17 @@ class _GroupItemState extends State<GroupItem> {
     return GestureDetector(
       onTap: () {
 
-        widget.isWorkoutSelection ?
-        Navigator.of(context).pushNamed(GroupDetailScreen.routeName,
-            arguments: widget.muscleGroup.id)
-        :
-            setState((){
-              _isSelected = !_isSelected;
-              widget.getSelectedGroupId(widget.muscleGroup.id);
-            });
+        if (!widget.isWorkoutSelection) {
+          Navigator.of(context).pushNamed(GroupDetailScreen.routeName,
+              arguments: widget.muscleGroup.id);
+        }
+        else{
+          setState((){
+            _isSelected = !_isSelected;
+            widget.getSelectedGroupId(widget.muscleGroup.id);
+          });
+        }
+
       },
       child: Hero(
         tag: widget.muscleGroup.id,
