@@ -14,7 +14,7 @@ class Exercises with ChangeNotifier {
 
     final dataList = await DBHelper.fetchData('exercises');
 
-    DBHelper.getNumberOfItems('exercises').then((value) => print('Number of items is: ' +  value.toString()));
+    DBHelper.getNumberOfItems('exercises').then((value) => {});
 
 
 
@@ -35,7 +35,7 @@ class Exercises with ChangeNotifier {
 
     final dataList = await DBHelper.filterOutData(table, ['id', 'name', 'desc', 'FK_muscle_group'], 'name', whereArg);
 
-    print(dataList);
+    // print(dataList);
 
     _items = dataList.map((item) => Exercise(id: item['id'], name: item['name'], desc: item['desc'])).toList();
     notifyListeners();

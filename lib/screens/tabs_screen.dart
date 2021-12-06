@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:gym_buddy/screens/muscle_group_screen.dart';
-import 'package:gym_buddy/widgets/workout.dart';
 import '../screens/welcome_screen.dart';
 
 class TabsScreen extends StatefulWidget {
@@ -16,8 +15,8 @@ class _TabsScreenState extends State<TabsScreen> {
   PageController? _pageController;
   final List<Widget> _pages = [
 
-  WelcomeScreen() ,
-  MuscleGroupScreen()
+  const WelcomeScreen() ,
+  const MuscleGroupScreen()
 
   ];
 

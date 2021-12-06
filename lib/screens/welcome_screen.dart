@@ -39,19 +39,19 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
               Expanded(child: Container(
 
               ),),
-              Container(
+              SizedBox(
                 height: 100,
                 child: ListView.builder(
                   scrollDirection: Axis.horizontal,
                   shrinkWrap: true,
                   itemBuilder: (context, index) {
-                    return WorkoutCard();
+                    return const WorkoutCard();
                   },),
               )
             ]),
           ),
 
-          Container(
+          SizedBox(
             height: MediaQuery.of(context).size.height * 0.33,
             child: Center(
                 child: Column(

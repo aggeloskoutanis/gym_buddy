@@ -29,12 +29,12 @@ class MyApp extends StatelessWidget {
           title: 'Flutter Demo',
           theme: ThemeData(
               primarySwatch: Colors.grey,
-              accentColor: Colors.deepOrange,
+              colorScheme: ColorScheme.fromSwatch(accentColor: Colors.deepOrange),
               textTheme: const TextTheme(
                       bodyText1: TextStyle(), bodyText2: TextStyle())
                   .apply(
                       bodyColor: Colors.black54, displayColor: Colors.white)),
-          home: MyHomePage(),
+          home: const MyHomePage(),
           routes: {
             MuscleGroupScreen.routeName: (ctx) => const MuscleGroupScreen(),
             AddMuscleGroupScreen.routeName: (ctx) =>

@@ -29,11 +29,11 @@ class MuscleGroups with ChangeNotifier{
 
     final List<Exercise> _exercises = exercises;
 
-    _exercises.forEach((exercise) {
+    for (var exercise in _exercises) {
 
       DBHelper.insert('exercises', {'id': exercise.id, 'name': exercise.name, 'FK_muscle_group' : newMuscleGroup.id});
 
-    });
+    }
 
 
   }
@@ -48,17 +48,17 @@ class MuscleGroups with ChangeNotifier{
     List<Exercise> groupExercises = [];
     List<MuscleGroup> muscleGroups = [];
 
-    dataList.forEach((group) {
+    for (var group in dataList) {
 
       final tempExercises = exercises.where((oldElement) => group['group_id'] == oldElement['FK_muscle_group'].toString());
 
-      tempExercises.forEach((ex) {
+      for (var ex in tempExercises) {
         groupExercises.add(Exercise(id: ex['id'], name: ex['name'], desc: ex['desc']));
-      });
+      }
 
       muscleGroups.add(MuscleGroup(id: group['group_id'], name: group['name'], exercises: [...groupExercises]));
       groupExercises.clear();
-    });
+    }
 
 
       _items = muscleGroups;

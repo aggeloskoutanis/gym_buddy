@@ -20,7 +20,7 @@ class WorkoutSelectionScreen extends StatelessWidget {
 
           /* Registers a workout */
 
-          print(muscleGroupsId);
+          // print(muscleGroupsId);
 
 
         },
@@ -51,7 +51,7 @@ class WorkoutSelectionScreen extends StatelessWidget {
                 else{
                   muscleGroupsId.remove(muscleGroupId);
                 }
-                print('GroupId: ' + muscleGroupId);
+                // print('GroupId: ' + muscleGroupId);
 
               });
 

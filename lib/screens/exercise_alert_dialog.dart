@@ -11,7 +11,7 @@ class ExerciseAlertDialog extends StatefulWidget {
   ExerciseAlertDialog({required this.getCheckedOutExercises, Key? key})
       : super(key: key);
   final List<Exercise> exercises = [];
-  Function(List<Exercise>) getCheckedOutExercises;
+  final Function(List<Exercise>) getCheckedOutExercises;
 
   @override
   _ExerciseAlertDialogState createState() => _ExerciseAlertDialogState();
@@ -24,7 +24,7 @@ class _ExerciseAlertDialogState extends State<ExerciseAlertDialog>
 
   final _selectedExerciseController = TextEditingController();
 
-  var _onChangeValue;
+  String _onChangeValue = "";
 
   @override
   void dispose() {
@@ -54,11 +54,7 @@ class _ExerciseAlertDialogState extends State<ExerciseAlertDialog>
     _onChangeValue = '';
 
     // Start listening to changes.
-    _selectedExerciseController.addListener(_printLatestValue);
-  }
-
-  void _printLatestValue() {
-    print('Second text field: ${_selectedExerciseController.text}');
+    // _selectedExerciseController.addListener(_printLatestValue);
   }
 
   @override

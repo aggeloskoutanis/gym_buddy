@@ -46,7 +46,7 @@ class DBHelper {
 
     final db = await DBHelper.database();
 
-    final result = await db.query(table, columns: columns, where: 'name LIKE ?', whereArgs: ['$key']);
+    final result = await db.query(table, columns: columns, where: 'name LIKE ?', whereArgs: [key]);
 
     return result.isNotEmpty ? true : false;
   }
