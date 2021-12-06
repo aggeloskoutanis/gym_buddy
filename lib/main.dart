@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:gym_buddy/screens/on_progress_exercises.dart';
 import 'package:gym_buddy/screens/workout_selection_screen.dart';
 import '../providers/workouts.dart';
 import '../screens/group_details_screen.dart';
@@ -41,7 +42,8 @@ class MyApp extends StatelessWidget {
                 const AddMuscleGroupScreen(),
             GroupDetailScreen.routeName: (ctx) => const GroupDetailScreen(),
             WelcomeScreen.routeName: (ctx) => const WelcomeScreen(),
-            WorkoutSelectionScreen.routeName: (ctx) => const WorkoutSelectionScreen()
+            WorkoutSelectionScreen.routeName: (ctx) => const WorkoutSelectionScreen(),
+            OnProgressExercisesScreen.routeName: (ctx) => const OnProgressExercisesScreen()
           },
           onUnknownRoute: (settings) {
             return MaterialPageRoute(builder: (ctx) => const WelcomeScreen());

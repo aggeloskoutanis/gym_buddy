@@ -5,7 +5,7 @@ import '../screens/group_details_screen.dart';
 class GroupItem extends StatefulWidget {
   const GroupItem({required this.muscleGroup, required this.index, this.isWorkoutSelection = false, required this.getSelectedGroupId, Key? key}) : super(key: key);
 
-  final Function (String) getSelectedGroupId;
+  final Function (MuscleGroup) getSelectedGroupId;
   final bool isWorkoutSelection;
   final MuscleGroup muscleGroup;
   final int index;
@@ -30,7 +30,7 @@ class _GroupItemState extends State<GroupItem> {
         else{
           setState((){
             _isSelected = !_isSelected;
-            widget.getSelectedGroupId(widget.muscleGroup.id);
+            widget.getSelectedGroupId(widget.muscleGroup);
           });
         }
 

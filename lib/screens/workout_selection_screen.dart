@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:gym_buddy/providers/muscle_group.dart';
+import 'package:gym_buddy/providers/workouts.dart';
+import 'package:gym_buddy/screens/on_progress_exercises.dart';
 import '../widgets/group_item.dart';
 import '../providers/muscle_groups.dart';
 import 'package:provider/provider.dart';
@@ -11,7 +14,7 @@ class WorkoutSelectionScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
 
-  List<String> muscleGroupsId = [];
+  List<MuscleGroup> muscleGroupsId = [];
 
     return Scaffold(
       floatingActionButton: FloatingActionButton(
@@ -20,7 +23,11 @@ class WorkoutSelectionScreen extends StatelessWidget {
 
           /* Registers a workout */
 
-          // print(muscleGroupsId);
+          Provider.of<Workouts>(context, listen: false).addWorkout(muscleGroupsId).then((value) => {
+
+            Navigator.of(context).pushNamed(OnProgressExercisesScreen.routeName)
+
+          });
 
 
         },
@@ -43,7 +50,7 @@ class WorkoutSelectionScreen extends StatelessWidget {
             itemCount: muscleGroups.items.length,
             itemBuilder: (BuildContext context, int index) {
 
-              return GroupItem(isWorkoutSelection: true, muscleGroup: muscleGroups.items[index], index: index, getSelectedGroupId: (String muscleGroupId) {
+              return GroupItem(isWorkoutSelection: true, muscleGroup: muscleGroups.items[index], index: index, getSelectedGroupId: (MuscleGroup muscleGroupId) {
 
                 if (!muscleGroupsId.contains(muscleGroupId)) {
                   muscleGroupsId.add(muscleGroupId);

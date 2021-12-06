@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:gym_buddy/helpers/db_helper.dart';
 import 'package:gym_buddy/providers/muscle_group.dart';
+import 'package:intl/intl.dart';
 
 class Workout with ChangeNotifier {
 
@@ -35,7 +36,7 @@ class Workouts with ChangeNotifier {
 
   }
 
-  void addWorkout(List<MuscleGroup> muscleGroups) {
+ Future<void> addWorkout(List<MuscleGroup> muscleGroups) async {
 
     final newWorkout = Workout(workoutId: DateTime.now().toString() ,date: DateTime.now().toIso8601String(), muscleGroups: muscleGroups);
 
@@ -43,14 +44,30 @@ class Workouts with ChangeNotifier {
     notifyListeners();
 
 
-    for (var muscleGroup in muscleGroups) {
+    for (var muscleGroupId in muscleGroups) {
 
-      DBHelper.insert('workouts', newWorkout.toJSON(muscleGroup.id));
+      DBHelper.insert('workouts', newWorkout.toJSON(muscleGroupId.id)).catchError((onError) {
+
+        throw Exception("Failed inserting new workout on DB");
+
+      });
 
     }
 
 
 
+  }
+
+  Future<List<Workout>> getWorkouts() async {
+
+    DateTime today = DateTime.now();
+    var _today =  DateTime.parse(today.toString());
+    items.retainWhere((workout) =>
+
+      DateFormat.yMMMd().format(DateFormat('yMMMd').parse(workout.date)) == DateFormat.yMMMd().format(today)
+
+    );
+    return items;
   }
 
 
