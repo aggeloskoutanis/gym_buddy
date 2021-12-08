@@ -19,6 +19,7 @@ class _MuscleGroupScreenState extends State<MuscleGroupScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: Theme.of(context).primaryColor,
         actions: [
           IconButton(
             icon: const Icon(Icons.add),

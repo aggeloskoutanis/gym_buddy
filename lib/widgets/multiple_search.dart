@@ -57,11 +57,7 @@ class _MultipleSearchState extends State<MultipleSearch> {
             MediaQuery.of(context).size.height * 0.45, context),
             ElevatedButton(
             
-            style: ButtonStyle(
-              shadowColor: MaterialStateProperty.all(Theme.of(context).primaryColor),
-              elevation: MaterialStateProperty.all(5)
-
-            ),
+            style: ElevatedButton.styleFrom(primary: Colors.deepOrange),
             onPressed: () {
               showDialog(
                   context: context,
@@ -74,7 +70,7 @@ class _MultipleSearchState extends State<MultipleSearch> {
                       });
                     });
                   });
-            }, child: const Text('Add exercises', style: TextStyle(color: Colors.white),),
+            }, child: const Text('Add exercises', style: TextStyle(color: Colors.white,),)
           ),
       ],
     );

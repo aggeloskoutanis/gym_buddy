@@ -24,7 +24,9 @@ class _AddMuscleGroupScreenState extends State<AddMuscleGroupScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(),
+      appBar: AppBar(
+        backgroundColor: Theme.of(context).primaryColor,
+      ),
       body: GestureDetector(
         onTap: () {
           FocusManager.instance.primaryFocus?.unfocus();

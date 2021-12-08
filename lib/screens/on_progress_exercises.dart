@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:gym_buddy/providers/exercises.dart';
 import 'package:provider/provider.dart';
-import '../providers/workouts.dart';
+
 
 
 class OnProgressExercisesScreen extends StatefulWidget {
@@ -18,15 +19,19 @@ class _OnProgressExercisesScreenState extends State<OnProgressExercisesScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Theme.of(context).primaryColor,
+      ),
         body: FutureBuilder(
-          future: Provider.of<Workouts>(context, listen: false).getWorkouts() ,
+          future: Provider.of<Exercises>(context, listen: false).getWorkoutsExercises() ,
           builder: (context, snapshot) =>
             snapshot.connectionState == ConnectionState.waiting
                 ? const CircularProgressIndicator()
-                : Consumer<Workouts>(builder: (ctx, workouts, ch) {
+                : Consumer<Exercises>(builder: (ctx, exercises, ch) {
 
-                  return ListView.builder(itemCount: workouts.items.length,
-                  itemBuilder: (context, index) => Card(child:Text(workouts.items[index].workoutId),),);
+                  return ListView.builder(itemCount: exercises.fetchedExercises.length,
+                  itemBuilder: (context, index) =>
+                      Card(child:Text(exercises.fetchedExercises[index].name),),);
 
             } ),)
     );

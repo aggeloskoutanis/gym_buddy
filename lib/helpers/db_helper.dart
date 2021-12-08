@@ -115,4 +115,25 @@ class DBHelper {
     
   }
 
+  static Future<List<Map<String, dynamic>>> fetchExercisesOfAWorkout(String whereArg) async {
+
+    final db = await DBHelper.database();
+
+    final results = await db.query('exercises', columns: ['id', 'name', 'desc', 'FK_muscle_group'], where: 'FK_muscle_group = ?', whereArgs: [whereArg]);
+
+    return results;
+  }
+
+  static Future<List<Map<String, dynamic>>>fetchWorkoutsFromDB() async {
+
+    final db = await DBHelper.database();
+
+    final results = db.rawQuery('SELECT * FROM workouts');
+
+    return results;
+    
+    
+  }
+  
+
 }
