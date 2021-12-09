@@ -65,60 +65,16 @@ class Exercises with ChangeNotifier {
 
 
 
-  Future<List<Exercise>?> getWorkoutsExercises() async {
+  Future<void> getWorkoutsExercises(List<Workout> workouts) async {
 
-    List<Map<String, dynamic>>  workouts = [];
-    List<Workout> temp = [];
     List<Map<String, dynamic>> exercises;
-
-    // DBHelper.fetchWorkoutsFromDB().then((value) {
-    //   exercises = value;
-    //   DateTime today = DateTime.now();
-    //
-    //   for (var workout in exercises) {
-    //     workouts.add(Workout(
-    //         workoutId: workout['workout_id'],
-    //         date: workout['date'],
-    //         muscleGroups: workout['FK_muscle_group']));
-    //   }
-    //
-    //   workouts.retainWhere((workout) => DateFormat('yMMMd').format(DateTime.parse(workout.date)) == DateFormat('yMMMd').format(today));
-    //
-    //   List<Exercise> exercisesToReturn = [];
-    //
-    //   for (var workout in workouts) {
-    //     DBHelper.fetchExercisesOfAWorkout(workout.muscleGroups).then((fetchedExercises) {
-    //
-    //       for (var exercise in fetchedExercises) {
-    //         exercisesToReturn.add(Exercise(
-    //             id: exercise['id'],
-    //             desc: exercise['desc'],
-    //             name: exercise['name']));
-    //       }
-    //
-    //       return exercisesToReturn;
-    //     });
-    //   }
-    //
-    //
-    //
-    // });
-
-    workouts = await DBHelper.fetchWorkoutsFromDB();
-
+    _fetchedExercises.clear();
 
     DateTime today = DateTime.now();
 
+    workouts.retainWhere((workout) => DateFormat('yMMMd').format(DateTime.parse(workout.date)) == DateFormat('yMMMd').format(today));
+
     for (var workout in workouts) {
-      temp.add(Workout(
-          workoutId: workout['workout_id'],
-          date: workout['date'],
-          muscleGroups: workout['FK_muscle_group']));
-    }
-
-    temp.retainWhere((workout) => DateFormat('yMMMd').format(DateTime.parse(workout.date)) == DateFormat('yMMMd').format(today));
-
-    for (var workout in temp) {
 
       exercises = await DBHelper.fetchExercisesOfAWorkout(workout.muscleGroups);
 
@@ -134,7 +90,6 @@ class Exercises with ChangeNotifier {
 
     notifyListeners();
 
-    return _fetchedExercises;
   }
 
 

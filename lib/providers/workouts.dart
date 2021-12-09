@@ -33,6 +33,9 @@ class Workouts with ChangeNotifier {
   }
 
   Future<void> addWorkout(List<MuscleGroup> muscleGroups) async {
+
+    _items.clear();
+
     for (var muscleGroup in muscleGroups) {
       final newWorkout = Workout(
           workoutId: DateTime.now().toString(),
