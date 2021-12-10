@@ -1,16 +1,13 @@
 # gym_buddy
 
-A new Flutter project.
+Gym Buddy is a flutter application that you can use in order to track your workouts in the Gym. You can use it in order to create exercise groups and choose the exercises for your daily workout.
 
-## Getting Started
+## Table of Contents
 
-This project is a starting point for a Flutter application.
+* [General Info]
+* Technologies
+* Screens
+* Setup
 
-A few resources to get you started if this is your first Flutter project:
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
-
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+[General Info] : asdasd
