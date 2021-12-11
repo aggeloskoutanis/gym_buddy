@@ -5,8 +5,8 @@ Gym Buddy is a flutter application that you can use in order to track your worko
 
 * [Introduction](#introduction)
 * [Technologies](#technologies)
-* Screens(#screens)
-* Setup(#setup)
+* [Screens](#screens)
+* [Setup](#setup)
 
 
 
