@@ -19,3 +19,10 @@ This app is the entry point for me in the world of Flutter and Dart. Thus, its m
 * SQLite
 
 ### Screens
+### Setup
+
+You'll need the following packages:
+
+  * sqflite: 2.0.0+4
+  * provider: 6.0.1
+  * intl: 0.17.0
